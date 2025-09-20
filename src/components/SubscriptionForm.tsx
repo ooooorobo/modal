@@ -16,6 +16,8 @@ export const SubscriptionForm = ({ onSubmit }: {
     defaultValues: {
       name: '',
       email: '',
+      years: undefined,
+      github: undefined,
     }
   })
 
@@ -37,9 +39,10 @@ export const SubscriptionForm = ({ onSubmit }: {
       {errors.email && <p className={styles.Error}>{errors.email.message}</p>}
       <label>
         FE 경력 연차
-        <select {...register('years')}>
+        <select {...register('years')} defaultValue={''}>
+          <option value={''} disabled defaultChecked>선택해주세요</option>
           {subscriptionFormYears.options.map(value => (
-            <option value={value}>{SubscriptionYearToNameMap[value]}</option>
+            <option key={value} value={value}>{SubscriptionYearToNameMap[value]}</option>
           ))}
         </select>
       </label>
