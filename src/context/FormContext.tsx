@@ -1,5 +1,6 @@
 import {createContext, type PropsWithChildren, useCallback, useContext, useMemo, useRef, useState} from "react";
 import {Modal} from "../components/Modal";
+import {SubscriptionForm} from "../components/SubscriptionForm";
 
 type FormContextValue = {
   openFormModal: () => Promise<FormData | null>
@@ -37,24 +38,7 @@ export const FormContextProvider = ({children}: PropsWithChildren) => {
       {/* TODO: children을 밖에서 받아올 수 있게 */}
       <h2>뭔가 신청하기</h2>
       <div style={{height: '150vh'}}>아주 긴 무언가</div>
-      <form action={() => handleClose({})}>
-        <label>
-          이름
-          <input type="text" autoFocus={true}/>
-        </label>
-        <label>
-          이메일
-          <input type="email" inputMode="email"/>
-        </label>
-        <button
-          type={'button'}
-          onClick={() => handleClose(null)}>
-          취소
-        </button>
-        <button type={'submit'}>
-          신청
-        </button>
-      </form>
+      <SubscriptionForm onSubmit={data => handleClose(data)}/>
     </Modal>}
   </FormContext.Provider>
 }
