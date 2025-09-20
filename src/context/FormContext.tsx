@@ -13,14 +13,17 @@ const FormContext = createContext<FormContextValue | null>(null)
 export const FormContextProvider = ({children}: PropsWithChildren) => {
   const [open, setOpen] = useState(false)
   const resolveModalResponse = useRef<(value: FormData | null) => void | null>(null)
+  const previousActiveElementRef = useRef<HTMLElement>(null)
   
   const handleClose = useCallback((value: FormData | null) => {
     resolveModalResponse.current?.(value);
     setOpen(false);
+    previousActiveElementRef.current?.focus?.();
   }, [])
   
   const value = useMemo(() => ({
     openFormModal: (): Promise<FormData | null> => {
+      previousActiveElementRef.current = document.activeElement as HTMLElement;
       setOpen(true);
       return new Promise(resolve =>
         resolveModalResponse.current = resolve
