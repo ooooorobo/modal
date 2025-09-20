@@ -29,16 +29,16 @@ export const Modal = ({onClose, children}: Props) => {
   
   return (
     createPortal(
-      <div className={styles.Wrapper}>
-        <div className={styles.Dim} onClick={() => onClose(null)}/>
-        <RemoveScroll>
-          <FocusTrap>
+      <RemoveScroll>
+        <FocusTrap>
+          <div className={styles.Wrapper}>
+            <div className={styles.Dim} onClick={() => onClose(null)}/>
             <div className={styles.Container} aria-modal={true} role={'dialog'}>
               {children}
             </div>
-          </FocusTrap>
-        </RemoveScroll>
-      </div>,
+          </div>
+        </FocusTrap>
+      </RemoveScroll>,
       document.body
     )
   );

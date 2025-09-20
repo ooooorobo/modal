@@ -36,6 +36,7 @@ export const FormContextProvider = ({children}: PropsWithChildren) => {
     {open && <Modal onClose={handleClose}>
       {/* TODO: children을 밖에서 받아올 수 있게 */}
       <h2>뭔가 신청하기</h2>
+      <div style={{height: '150vh'}}>아주 긴 무언가</div>
       <form action={() => handleClose({})}>
         <label>
           이름
