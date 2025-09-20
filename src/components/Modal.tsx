@@ -6,6 +6,11 @@ type Props = PropsWithChildren<{
   onClose: (value: FormData | null) => void
 }>
 
+/*
+TODO:
+- 포커스 트랩
+- 트랜지션
+ */
 export const Modal = ({onClose, children}: Props) => {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {

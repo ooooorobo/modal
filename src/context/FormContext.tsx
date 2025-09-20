@@ -31,8 +31,26 @@ export const FormContextProvider = ({children}: PropsWithChildren) => {
   return <FormContext.Provider value={value}>
     {children}
     {open && <Modal onClose={handleClose}>
-      <button onClick={() => handleClose(null)}>닫기</button>
-      <button onClick={() => handleClose({})}>값 제출하면서 닫기</button>
+      {/* TODO: children을 밖에서 받아올 수 있게 */}
+      <h2>뭔가 신청하기</h2>
+      <form action="" onSubmit={() => handleClose({})}>
+        <label>
+          이름
+          <input type="text" autoFocus={true}/>
+        </label>
+        <label>
+          이메일
+          <input type="email" inputMode="email"/>
+        </label>
+        <button
+          type={'button'}
+          onClick={() => handleClose(null)}>
+          취소
+        </button>
+        <button type={'submit'}>
+          신청
+        </button>
+      </form>
     </Modal>}
   </FormContext.Provider>
 }
