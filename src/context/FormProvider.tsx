@@ -1,5 +1,5 @@
-import {type ReactNode, type Ref, useCallback, useRef, useState} from "react";
-import {Modal} from "../components/Modal";
+import { type ReactNode, type Ref, useCallback, useRef, useState } from 'react';
+import { Modal } from '../components/Modal';
 
 type FormProviderProps<FormValue> = {
   formElement: (props: { onSubmit: (data: FormValue) => void }) => ReactNode,
@@ -11,7 +11,7 @@ export const FormContextProvider = <FormValue extends object>
    formElement,
    triggerElement
  }: FormProviderProps<FormValue>) => {
-  const [open, setOpen] = useState(false)
+  const [ open, setOpen ] = useState(false)
 
   const resolveModalResponse = useRef<(value: FormValue | null) => void | null>(null)
   const triggerElementRef = useRef<HTMLButtonElement>(null)
@@ -30,9 +30,9 @@ export const FormContextProvider = <FormValue extends object>
   }, [])
 
   return <>
-    {triggerElement({open: handleOpen, ref: triggerElementRef})}
+    {triggerElement({ open: handleOpen, ref: triggerElementRef })}
     {open && <Modal onClose={handleClose}>
-      {formElement({onSubmit: handleClose})}
+      {formElement({ onSubmit: handleClose })}
     </Modal>}
   </>
 }

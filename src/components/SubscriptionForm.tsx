@@ -1,18 +1,18 @@
-import {useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {subscriptionFormSchema, type SubscriptionFormValue} from "../schema/subscriptionFormSchema";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { subscriptionFormSchema, type SubscriptionFormValue } from '../schema/subscriptionFormSchema';
 
-export const SubscriptionForm = ({onSubmit}: {
+export const SubscriptionForm = ({ onSubmit }: {
   onSubmit: (data: SubscriptionFormValue) => void
 }) => {
-  const {register, handleSubmit, formState: {errors}} = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(subscriptionFormSchema),
     defaultValues: {
       name: '',
       email: ''
     }
   })
-  
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <label>

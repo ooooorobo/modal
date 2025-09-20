@@ -1,16 +1,16 @@
 import styles from './Modal.module.css'
-import {type PropsWithChildren, useCallback, useEffect, useRef, useState} from "react";
-import {createPortal} from "react-dom";
-import {RemoveScroll} from "react-remove-scroll";
-import {FocusTrap} from "focus-trap-react";
-import {CSSTransition} from 'react-transition-group';
+import { type PropsWithChildren, useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { RemoveScroll } from "react-remove-scroll";
+import { FocusTrap } from "focus-trap-react";
+import { CSSTransition } from 'react-transition-group';
 
 type Props = PropsWithChildren<{
   onClose: (value: null) => void
 }>
 
-export const Modal = ({onClose, children}: Props) => {
-  const [isVisible, setIsVisible] = useState(false); // 내부 애니메이션 상태
+export const Modal = ({ onClose, children }: Props) => {
+  const [ isVisible, setIsVisible ] = useState(false); // 내부 애니메이션 상태
   const nodeRef = useRef(null);
 
   // 닫기 시작 (애니메이션만 시작)
@@ -20,7 +20,7 @@ export const Modal = ({onClose, children}: Props) => {
 
   const handleExited = useCallback(() => {
     onClose(null);
-  }, [])
+  }, [ onClose ])
 
   useEffect(() => {
     setIsVisible(true)
@@ -38,7 +38,7 @@ export const Modal = ({onClose, children}: Props) => {
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
-  }, []);
+  }, [ handleClose ]);
 
   return (
     createPortal(
