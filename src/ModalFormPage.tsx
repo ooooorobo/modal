@@ -1,14 +1,16 @@
-import {useState} from "react";
-import {Modal} from "./Modal";
+import {useFormModal} from "./context/FormContext";
 
 const ModalFormPage = () => {
-  const [open, setOpen] = useState(false)
+  const {openFormModal} = useFormModal()
+  
+  const handleOpenForm = () => {
+    openFormModal().then(v => console.log(v))
+  }
   
   return <div>
-    <button onClick={() => setOpen(true)}>
+    <button onClick={handleOpenForm}>
       신청하기
     </button>
-    {open && <Modal>hi</Modal>}
   </div>;
 };
 
