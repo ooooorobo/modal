@@ -9,6 +9,8 @@
     "strict": true,
     "verbatimModuleSyntax": true,
     "types": [
+      "env.d.ts",
+      "vite/client",
       "vitest/globals"
     ]
   }

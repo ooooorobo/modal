@@ -1,6 +1,15 @@
+import {useState} from "react";
+import {Modal} from "./Modal";
+
 const ModalFormPage = () => {
-  /* 여기에 구현해 주세요 */
-  return <div>ModalFormPage</div>;
+  const [open, setOpen] = useState(false)
+  
+  return <div>
+    <button onClick={() => setOpen(true)}>
+      신청하기
+    </button>
+    {open && <Modal>hi</Modal>}
+  </div>;
 };
 
 export default ModalFormPage;

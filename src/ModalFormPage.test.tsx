@@ -1,6 +1,6 @@
 import {afterEach, describe, expect, test} from "vitest";
 import {userEvent} from "@testing-library/user-event";
-import {render, screen, waitFor} from "@testing-library/react";
+import {act, render, screen, waitFor} from "@testing-library/react";
 import ModalFormPage from "./ModalFormPage";
 
 const user = userEvent.setup();
