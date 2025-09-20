@@ -1,29 +1,34 @@
-import {createContext, type PropsWithChildren, useCallback, useContext, useMemo, useRef, useState} from "react";
+import {createContext, type ReactNode, useCallback, useContext, useMemo, useRef, useState} from "react";
 import {Modal} from "../components/Modal";
-import {SubscriptionForm} from "../components/SubscriptionForm";
 
-type FormContextValue = {
-  openFormModal: () => Promise<FormData | null>
+type FormContextValue<FormValue = object> = {
+  openFormModal: () => Promise<FormValue | null>
 }
 
-
-type FormData = {}
+type FormProviderProps<FormValue> = {
+  children: ReactNode,
+  formElement: (props: { onSubmit: (data: FormValue) => void }) => ReactNode
+}
 
 const FormContext = createContext<FormContextValue | null>(null)
 
-export const FormContextProvider = ({children}: PropsWithChildren) => {
+export const FormContextProvider = <FormValue extends object>
+({
+   children,
+   formElement
+ }: FormProviderProps<FormValue>) => {
   const [open, setOpen] = useState(false)
-  const resolveModalResponse = useRef<(value: FormData | null) => void | null>(null)
+  const resolveModalResponse = useRef<(value: FormValue | null) => void | null>(null)
   const previousActiveElementRef = useRef<HTMLElement>(null)
-  
-  const handleClose = useCallback((value: FormData | null) => {
+
+  const handleClose = useCallback((value: FormValue | null) => {
     resolveModalResponse.current?.(value);
     setOpen(false);
     previousActiveElementRef.current?.focus?.();
   }, [])
-  
+
   const value = useMemo(() => ({
-    openFormModal: (): Promise<FormData | null> => {
+    openFormModal: (): Promise<FormValue | null> => {
       previousActiveElementRef.current = document.activeElement as HTMLElement;
       setOpen(true);
       return new Promise(resolve =>
@@ -31,14 +36,11 @@ export const FormContextProvider = ({children}: PropsWithChildren) => {
       )
     }
   } satisfies FormContextValue), [])
-  
+
   return <FormContext.Provider value={value}>
     {children}
     {open && <Modal onClose={handleClose}>
-      {/* TODO: children을 밖에서 받아올 수 있게 */}
-      <h2>뭔가 신청하기</h2>
-      <div style={{height: '150vh'}}>아주 긴 무언가</div>
-      <SubscriptionForm onSubmit={data => handleClose(data)}/>
+      {formElement({onSubmit: handleClose})}
     </Modal>}
   </FormContext.Provider>
 }

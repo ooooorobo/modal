@@ -5,7 +5,7 @@ import {RemoveScroll} from "react-remove-scroll";
 import {FocusTrap} from "focus-trap-react";
 
 type Props = PropsWithChildren<{
-  onClose: (value: FormData | null) => void
+  onClose: (value: null) => void
 }>
 
 /*
