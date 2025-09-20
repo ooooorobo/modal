@@ -33,7 +33,7 @@ export const FormContextProvider = ({children}: PropsWithChildren) => {
     {open && <Modal onClose={handleClose}>
       {/* TODO: children을 밖에서 받아올 수 있게 */}
       <h2>뭔가 신청하기</h2>
-      <form action="" onSubmit={() => handleClose({})}>
+      <form action={() => handleClose({})}>
         <label>
           이름
           <input type="text" autoFocus={true}/>
