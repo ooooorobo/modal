@@ -30,7 +30,7 @@ export const FormContextProvider = ({children}: PropsWithChildren) => {
   
   return <FormContext.Provider value={value}>
     {children}
-    {open && <Modal>
+    {open && <Modal onClose={handleClose}>
       <button onClick={() => handleClose(null)}>닫기</button>
       <button onClick={() => handleClose({})}>값 제출하면서 닫기</button>
     </Modal>}
