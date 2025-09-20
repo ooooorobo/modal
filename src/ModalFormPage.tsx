@@ -1,6 +1,6 @@
-import {FormContextProvider} from "./context/FormProvider";
-import {SubscriptionForm} from "./components/SubscriptionForm";
-import type {SubscriptionFormValue} from "./schema/subscriptionFormSchema";
+import { FormContextProvider } from './context/FormProvider';
+import { SubscriptionForm } from './components/SubscriptionForm';
+import type { SubscriptionFormValue } from './schema/subscriptionFormSchema';
 
 const ModalFormPage = () => {
   const handleOpenForm = async (open: () => Promise<SubscriptionFormValue | null>) => {
@@ -10,21 +10,19 @@ const ModalFormPage = () => {
     alert(`신청을 완료했어요!\n이름: ${result.name}\n이메일: ${result.email}`)
   }
 
-  return <div style={{height: '200vh'}}>
+  return <div style={{ height: '200vh' }}>
     <FormContextProvider<SubscriptionFormValue>
       formElement={
-        ({onSubmit}) => <>
-          <h2>뭔가 신청하기</h2>
+        ({ onSubmit }) => <>
           <SubscriptionForm onSubmit={onSubmit}/>
-          <div style={{height: '150vh'}}>아주 긴 무언가</div>
         </>
       }
       triggerElement={
-        ({open, ref}) => (
+        ({ open, ref }) => (
           <button
             ref={ref}
             onClick={() => handleOpenForm(open)}
-            style={{marginTop: '30vh', marginBottom: '200vh'}}
+            style={{ marginTop: '30vh', marginBottom: '200vh' }}
           >
             신청하기
           </button>
