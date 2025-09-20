@@ -17,6 +17,7 @@
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.63.0",
     "react-remove-scroll": "^2.7.1",
+    "react-transition-group": "^4.4.5",
     "zod": "^4.1.9"
   },
   "devDependencies": {
@@ -26,6 +27,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "@types/react-transition-group": "^4.4.12",
     "jsdom": "^27.0.0",
     "typescript": "~5.8.3",
     "vite": "^7.1.2",
