@@ -12,6 +12,7 @@ export const SubscriptionForm = ({onSubmit}: {
       email: ''
     }
   })
+  
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <label>
@@ -24,7 +25,7 @@ export const SubscriptionForm = ({onSubmit}: {
         <input type="email" inputMode={'email'} placeholder={'이메일을 입력해주세요'} {...register('email')}/>
       </label>
       {errors.email && <p>{errors.email.message}</p>}
-      <input type="submit"/>
+      <button type={'submit'}>신청</button>
     </form>
   )
 }

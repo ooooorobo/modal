@@ -12,8 +12,8 @@ const ModalFormPage = () => {
       formElement={
         ({onSubmit}) => <>
           <h2>뭔가 신청하기</h2>
-          <div style={{height: '150vh'}}>아주 긴 무언가</div>
           <SubscriptionForm onSubmit={onSubmit}/>
+          <div style={{height: '150vh'}}>아주 긴 무언가</div>
         </>
       }
       triggerElement={
@@ -21,7 +21,7 @@ const ModalFormPage = () => {
           <button
             ref={ref}
             onClick={() => handleOpenForm(open)}
-            style={{marginTop: '100vh'}}
+            style={{marginTop: '30vh', marginBottom: '200vh'}}
           >
             신청하기
           </button>
