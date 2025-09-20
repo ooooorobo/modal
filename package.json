@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "check": "biome check",
+    "lint:fix": "biome lint --write ./src",
     "test:watch": "vitest --watch"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "jsdom": "^27.0.0",
     "typescript": "~5.8.3",
     "vite": "^7.1.2",
     "vitest": "^3.2.4"
