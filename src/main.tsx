@@ -6,5 +6,5 @@ import ModalFormPage from './ModalFormPage';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ModalFormPage/>
-  </StrictMode>
+  </StrictMode>,
 );

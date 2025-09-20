@@ -1,13 +1,13 @@
-import styles from './Modal.module.css'
-import { type PropsWithChildren, useCallback, useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import { RemoveScroll } from "react-remove-scroll";
-import { FocusTrap } from "focus-trap-react";
+import { FocusTrap } from 'focus-trap-react';
+import { type PropsWithChildren, useCallback, useEffect, useRef, useState, } from 'react';
+import { createPortal } from 'react-dom';
+import { RemoveScroll } from 'react-remove-scroll';
 import { CSSTransition } from 'react-transition-group';
+import styles from './Modal.module.css';
 
 type Props = PropsWithChildren<{
-  onClose: (value: null) => void
-}>
+  onClose: (value: null) => void;
+}>;
 
 export const Modal = ({ onClose, children }: Props) => {
   const [ isVisible, setIsVisible ] = useState(false); // 내부 애니메이션 상태
@@ -20,10 +20,10 @@ export const Modal = ({ onClose, children }: Props) => {
 
   const handleExited = useCallback(() => {
     onClose(null);
-  }, [ onClose ])
+  }, [ onClose ]);
 
   useEffect(() => {
-    setIsVisible(true)
+    setIsVisible(true);
   }, []);
 
   useEffect(() => {
@@ -40,32 +40,35 @@ export const Modal = ({ onClose, children }: Props) => {
     };
   }, [ handleClose ]);
 
-  return (
-    createPortal(
-      <CSSTransition
-        classNames={{
-          enter: styles.ModalEnter,
-          enterActive: styles.ModalEnterActive,
-          exit: styles.ModalExit,
-          exitActive: styles.ModalExitActive,
-        }}
-        in={isVisible}
-        timeout={200}
-        nodeRef={nodeRef}
-        onExited={handleExited}
-      >
-        <RemoveScroll>
-          <FocusTrap>
-            <div className={styles.Wrapper}>
-              <div className={styles.Dim} onClick={handleClose}/>
-              <div ref={nodeRef} className={styles.Container} aria-modal={true} role={'dialog'}>
-                {children}
-              </div>
+  return createPortal(
+    <CSSTransition
+      classNames={{
+        enter: styles.ModalEnter,
+        enterActive: styles.ModalEnterActive,
+        exit: styles.ModalExit,
+        exitActive: styles.ModalExitActive,
+      }}
+      in={isVisible}
+      timeout={200}
+      nodeRef={nodeRef}
+      onExited={handleExited}
+    >
+      <RemoveScroll>
+        <FocusTrap>
+          <div className={styles.Wrapper}>
+            <div className={styles.Dim} onClick={handleClose}/>
+            <div
+              ref={nodeRef}
+              className={styles.Container}
+              aria-modal={true}
+              role={'dialog'}
+            >
+              {children}
             </div>
-          </FocusTrap>
-        </RemoveScroll>
-      </CSSTransition>,
-      document.body
-    )
+          </div>
+        </FocusTrap>
+      </RemoveScroll>
+    </CSSTransition>,
+    document.body,
   );
-}
+};
