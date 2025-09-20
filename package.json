@@ -10,9 +10,11 @@
     "test:watch": "vitest --watch"
   },
   "dependencies": {
+    "focus-trap-react": "^11.0.4",
     "modern-normalize": "^3.0.1",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-remove-scroll": "^2.7.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.2",

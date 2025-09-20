@@ -7,8 +7,8 @@ const ModalFormPage = () => {
     openFormModal().then(v => console.log(v))
   }
   
-  return <div>
-    <button onClick={handleOpenForm}>
+  return <div style={{height: '200vh'}}>
+    <button onClick={handleOpenForm} style={{marginTop: '100vh'}}>
       신청하기
     </button>
   </div>;

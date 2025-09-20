@@ -1,6 +1,8 @@
 import styles from './Modal.module.css'
 import {type PropsWithChildren, useEffect} from "react";
 import {createPortal} from "react-dom";
+import {RemoveScroll} from "react-remove-scroll";
+import {FocusTrap} from "focus-trap-react";
 
 type Props = PropsWithChildren<{
   onClose: (value: FormData | null) => void
@@ -8,7 +10,6 @@ type Props = PropsWithChildren<{
 
 /*
 TODO:
-- 포커스 트랩
 - 트랜지션
  */
 export const Modal = ({onClose, children}: Props) => {
@@ -30,9 +31,13 @@ export const Modal = ({onClose, children}: Props) => {
     createPortal(
       <div className={styles.Wrapper}>
         <div className={styles.Dim} onClick={() => onClose(null)}/>
-        <div className={styles.Container} aria-modal={true} role={'dialog'}>
-          {children}
-        </div>
+        <RemoveScroll>
+          <FocusTrap>
+            <div className={styles.Container} aria-modal={true} role={'dialog'}>
+              {children}
+            </div>
+          </FocusTrap>
+        </RemoveScroll>
       </div>,
       document.body
     )
