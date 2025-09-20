@@ -3,8 +3,11 @@ import {SubscriptionForm} from "./components/SubscriptionForm";
 import type {SubscriptionFormValue} from "./schema/subscriptionFormSchema";
 
 const ModalFormPage = () => {
-  const handleOpenForm = (open: () => Promise<SubscriptionFormValue | null>) => {
-    open().then(v => console.log(v))
+  const handleOpenForm = async (open: () => Promise<SubscriptionFormValue | null>) => {
+    const result = await open();
+    if (!result) return;
+
+    alert(`신청을 완료했어요!\n이름: ${result.name}\n이메일: ${result.email}`)
   }
 
   return <div style={{height: '200vh'}}>
