@@ -11,7 +11,7 @@ export const FormContextProvider = <FormValue extends object>
    formElement,
    triggerElement
  }: FormProviderProps<FormValue>) => {
-  const [ open, setOpen ] = useState(true)
+  const [ open, setOpen ] = useState(false)
 
   const resolveModalResponse = useRef<(value: FormValue | null) => void | null>(null)
   const triggerElementRef = useRef<HTMLButtonElement>(null)
